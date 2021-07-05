@@ -28,7 +28,7 @@
 <meta property="og:description" content="cnm 傻逼软构">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2021-07-01T12:29:12.000Z">
-<meta property="article:modified_time" content="2021-07-04T08:34:02.182Z">
+<meta property="article:modified_time" content="2021-07-05T12:52:32.965Z">
 <meta property="article:author" content="transient91">
 <meta property="article:tag" content="软件构造">
 <meta name="twitter:card" content="summary">
@@ -181,7 +181,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2021-07-04 16:34:02" itemprop="dateModified" datetime="2021-07-04T16:34:02+08:00">2021-07-04</time>
+                <time title="Modified: 2021-07-05 20:52:32" itemprop="dateModified" datetime="2021-07-05T20:52:32+08:00">2021-07-05</time>
               </span>
 
           
@@ -197,25 +197,98 @@
       
         <p>cnm 傻逼软构</p>
 <span id="more"></span>
-<h1 id="1-to-understand-the-constituents-of-a-software-system-in-three-orthogonal-dimensionsbr从三个维度看软件系统的构成"><a class="markdownIt-Anchor" href="#1-to-understand-the-constituents-of-a-software-system-in-three-orthogonal-dimensionsbr从三个维度看软件系统的构成"></a> 1 To understand the constituents of a software system in three orthogonal dimensions<br>从三个维度看软件系统的构成</h1>
-<h2 id="multi-dimensional-software-views"><a class="markdownIt-Anchor" href="#multi-dimensional-software-views"></a> Multi-dimensional software views</h2>
+<h1 id="to-understand-the-constituents-of-a-software-system-in-three-orthogonal-dimensionsbr从三个维度看软件系统的构成"><a class="markdownIt-Anchor" href="#to-understand-the-constituents-of-a-software-system-in-three-orthogonal-dimensionsbr从三个维度看软件系统的构成"></a> To understand the constituents of a software system in three orthogonal dimensions<br>从三个维度看软件系统的构成</h1>
 <ul>
-<li>By phases:<br />
-build-time views and run-time views<br />
+<li>By phases: build-time views and run-time views<br />
 按阶段划分：构造时/运行时视图</li>
-<li>By dynamics:<br />
-moment views and period views<br />
+<li>By dynamics: moment views and period views<br />
 按动态性划分：时刻/阶段视图</li>
-<li>By levels:<br />
-code views and component views<br />
+<li>By levels: code views and component views<br />
 按构造对象的层次划分：代码/构件视图</li>
 </ul>
-<h3 id="11-build-time-views"><a class="markdownIt-Anchor" href="#11-build-time-views"></a> 1.1 Build-time Views</h3>
-<h1 id="to-know-what-models-are-used-to-describe-the-morphology-and-states-of-a-software-systembr用什么样的模型视图描述软件系统"><a class="markdownIt-Anchor" href="#to-know-what-models-are-used-to-describe-the-morphology-and-states-of-a-software-systembr用什么样的模型视图描述软件系统"></a> To know what models are used to describe the morphology and states of a software system<br>用什么样的模型/视图描述软件系统</h1>
-<h1 id="to-treat-software-construction-as-the-transformations-between-different-viewsbr将软件构造看作不同视图之间的转换"><a class="markdownIt-Anchor" href="#to-treat-software-construction-as-the-transformations-between-different-viewsbr将软件构造看作不同视图之间的转换"></a> To treat software construction as the transformations between different views<br>将“软件构造”看作“不同视图之间的转换”</h1>
-<h1 id="to-know-quality-factors-to-be-cared-in-software-constructionbr软件构造过程中应考虑的重要质量指标"><a class="markdownIt-Anchor" href="#to-know-quality-factors-to-be-cared-in-software-constructionbr软件构造过程中应考虑的重要质量指标"></a> To know quality factors to be cared in software construction<br>软件构造过程中应考虑的重要质量指标</h1>
-<h1 id="to-understand-the-consequences-if-quality-objectives-cannot-be-achievedbr如果达不到期望的质量目标会有什么后果"><a class="markdownIt-Anchor" href="#to-understand-the-consequences-if-quality-objectives-cannot-be-achievedbr如果达不到期望的质量目标会有什么后果"></a> To understand the consequences if quality objectives cannot be achieved<br>如果达不到期望的质量目标，会有什么后果</h1>
-<h1 id="to-know-what-construction-techniques-are-to-be-studied-for-each-quality-factor-in-this-coursebr有哪些面向质量指标的软件构造技术"><a class="markdownIt-Anchor" href="#to-know-what-construction-techniques-are-to-be-studied-for-each-quality-factor-in-this-coursebr有哪些面向质量指标的软件构造技术"></a> To know what construction techniques are to be studied for each quality factor in this course<br>有哪些面向质量指标的软件构造技术</h1>
+<table>
+  <tr align="center">
+    <th> </th>
+    <th colspan="2">Moment</th>
+    <th colspan="2">Period</th>
+  </tr>
+  <tr align="center">
+    <td></td>
+    <td>Code-level</td>
+    <td>Component-level</td>
+    <td>Code-level</td>
+    <td>Component-level</td>
+  </tr>
+  <tr align="center">
+    <td>Build-time</td>
+    <td><span style="color:rgb(255, 69, 0);">Source code,</span><br>AST,<br><span style="color:rgb(255, 69, 0);">Interface-Class-<br>Attribute-Method</span><br>(Class Diagram)</td>
+    <td><span style="color:rgb(255, 69, 0);">Package, File,<br>Static Linking,<br>Library, Test Case,</span><br>Build Script(Component Diagram)</td>
+    <td><span style="color:rgb(255, 69, 0);">Code Churn</span></td>
+    <td><span style="color:rgb(255, 69, 0);">Configuration Item,<br>Version</span></td>
+  </tr>
+  <tr align="center">
+    <td rowspan="2">Run-time</td>
+    <td rowspan="2"><span style="color:rgb(255, 69, 0);">Code Snapshot,<br>Memory dump</span></td>
+    <td rowspan="2">Package, Library,<br>Dynamic linking,<br>Configuration, Database,<br>Middleware, Network,<br>Hardware (Deployment Diagram)</td>
+    <td>Execution stack trace,<br><span style="color:rgb(255, 69, 0);">Concurrent multi-threads</span></td>
+    <td>Event log,<br>Multi-processes,<br>Distributed processes</td>
+  </tr>
+  <tr align="center">
+    <td colspan="2">Procedure Call Graph,<br>Message Graph (Sequence Diagram)</td>
+  </tr>
+</table>
+<h2 id="build-time-views"><a class="markdownIt-Anchor" href="#build-time-views"></a> Build-time Views</h2>
+<p><span style="color:rgb(255, 150, 178);"><em>Build-time</em></span>(构造阶段): idea → requirement → design → <span style="color:rgb(255, 69, 0);">code</span> → installable / executable package</p>
+<ul>
+<li><span style="color:rgb(255, 150, 178);"><em>Code-level view</em></span>: source code ---- how source code are <span style="color:rgb(255, 69, 0);">logically</span> organizedby basic program blocks such as <span style="color:rgb(255, 69, 0);">functions, classes, methods, interfaces</span> , etc, and the dependencies among them<br />
+代码的逻辑组织</li>
+<li><span style="color:rgb(255, 150, 178);"><em>Component-level view</em></span>: architecture ---- how source code are <span style="color:rgb(255, 69, 0);">physically</span> organized by <span style="color:rgb(255, 69, 0);">files, directories, packages, libraries</span> , and the dependenciesamong them<br />
+代码的物理组织</li>
+</ul>
+<hr />
+<ul>
+<li><span style="color:rgb(255, 150, 178);"><em>Moment view</em></span>: what do source code and component look like <span style="color:rgb(255, 69, 0);">in a specific time</span><br />
+特定时刻的软件形态</li>
+<li><span style="color:rgb(255, 150, 178);"><em>Period view</em></span>: how do they evolve/change <span style="color:rgb(255, 69, 0);">along with time</span><br />
+软件形态随时间的变化</li>
+</ul>
+<h2 id="runtime-views"><a class="markdownIt-Anchor" href="#runtime-views"></a> Runtime Views</h2>
+<p><span style="color:rgb(255, 150, 178);"><em>Runtime</em></span>: what does a program look like when it runs inside the target machine, and what are all the disk files that the target machine needs to load into memory?<br />
+运行时：程序被载入目标机器，开始执行</p>
+<ul>
+<li><span style="color:rgb(255, 150, 178);"><em>Code-level view</em></span>: source code ---- what do the <span style="color:rgb(255, 69, 0);">in-memory states</span> of an executable program look like and how do program units (objects,functions, etc) interact with each other?<br />
+代码层面：逻辑实体在内存中如何呈现？</li>
+<li><span style="color:rgb(255, 150, 178);"><em>Component-level view</em></span>: architecture ---- how are software packages deployed into <span style="color:rgb(255, 69, 0);">physical environment</span> (OS, network, hardware, etc) and how do they interact?<br />
+构件层面：物理实体在物理硬件环境中如何呈现？</li>
+</ul>
+<hr />
+<ul>
+<li><span style="color:rgb(255, 150, 178);"><em>Moment view</em></span>: how do programs be have <span style="color:rgb(255, 69, 0);">in a specific time</span><br />
+逻辑/物理实体在内存/硬件环境中特定时刻的形态如何？</li>
+<li><span style="color:rgb(255, 150, 178);"><em>Period view</em></span>: how do they behave <span style="color:rgb(255, 69, 0);">along with time</span><br />
+逻辑/物理实体在内存/硬件环境中的形态随时间如何变化？</li>
+</ul>
+<h1 id="名次解释"><a class="markdownIt-Anchor" href="#名次解释"></a> 名次解释</h1>
+<h2 id="code-churn"><a class="markdownIt-Anchor" href="#code-churn"></a> Code churn</h2>
+<p>代码变化: Lines added, modified or deleted to a file from one version to another.</p>
+<h2 id="software-configuration-item-sci配置项"><a class="markdownIt-Anchor" href="#software-configuration-item-sci配置项"></a> Software Configuration Item (SCI，配置项)</h2>
+<p>  随着软件开发工作的开展，会得到许多工作产品或阶段产品，还会用到许多工具软件。所有这些独立的信息项都要得到妥善的管理，决不能出现混乱，以便于在提出某些特定的要求时，将它们进行约定的组合来满足使用的目的。这些信息项目是配針管理的对象，称为软件配置项。<br />
+  软件配置项目可以分为以下几类：</p>
+<ol>
+<li>环境类，指软件开发环境或软件维护环境，例如编译器、操作系统、编辑器、数据库管理系统、开发工具、项目管理工具、文档编制工具等；</li>
+<li>定义类，是需求分析与定义阶段结束后得到的工作产品，例如需求规格说明、项目开发计划、设计标准或设计准则、验收测试计划等：</li>
+<li>设计类，设计阶段结束后得到的工作产品，例如系统设计规格说明、程序规格说明、数据库设计、编码标准、用户界面标准、测试标准、系统测试计划、用户手册等;</li>
+<li>测试类，系统测试完成后的工作产品，例如系统测试数据、系统测试结果、操作手册、安装手册等：</li>
+<li>维护类，进入维护阶段以后产生的工作产品。</li>
+</ol>
+<p>转自https://blog.csdn.net/trecn001/article/details/104629296/</p>
+<h2 id="memory-dump-内存信息转储"><a class="markdownIt-Anchor" href="#memory-dump-内存信息转储"></a> Memory dump (内存信息转储)</h2>
+<p>Memory dump: a file on hard disk containing a copy of the contents of a process’s memory, produced when a process is aborted by certain kinds of internal error or signal.</p>
+<ul>
+<li><span style="color:rgb(255, 69, 0);">Debuggers</span> can load the dump file and display the information it contains about the state of the running program.</li>
+<li><span style="color:rgb(255, 69, 0);">Information</span> includes the contents of registers, the call stack and all other program data (counters, variables, switches, flags, etc).</li>
+<li>It is taken in order to <span style="color:rgb(255, 69, 0);">analyze</span> the status of the program, and the programmer looks into the memory buffers to see which data items were being worked on at the time of failure.</li>
+</ul>
 
     </div>
 
@@ -299,13 +372,8 @@ code views and component views<br />
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-to-understand-the-constituents-of-a-software-system-in-three-orthogonal-dimensionsbr%E4%BB%8E%E4%B8%89%E4%B8%AA%E7%BB%B4%E5%BA%A6%E7%9C%8B%E8%BD%AF%E4%BB%B6%E7%B3%BB%E7%BB%9F%E7%9A%84%E6%9E%84%E6%88%90"><span class="nav-number">1.</span> <span class="nav-text"> 1 To understand the constituents of a software system in three orthogonal dimensions
-从三个维度看软件系统的构成</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#multi-dimensional-software-views"><span class="nav-number">1.1.</span> <span class="nav-text"> Multi-dimensional software views</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#11-build-time-views"><span class="nav-number">1.1.1.</span> <span class="nav-text"> 1.1 Build-time Views</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#to-know-what-models-are-used-to-describe-the-morphology-and-states-of-a-software-systembr%E7%94%A8%E4%BB%80%E4%B9%88%E6%A0%B7%E7%9A%84%E6%A8%A1%E5%9E%8B%E8%A7%86%E5%9B%BE%E6%8F%8F%E8%BF%B0%E8%BD%AF%E4%BB%B6%E7%B3%BB%E7%BB%9F"><span class="nav-number">2.</span> <span class="nav-text"> To know what models are used to describe the morphology and states of a software system
-用什么样的模型&#x2F;视图描述软件系统</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#to-treat-software-construction-as-the-transformations-between-different-viewsbr%E5%B0%86%E8%BD%AF%E4%BB%B6%E6%9E%84%E9%80%A0%E7%9C%8B%E4%BD%9C%E4%B8%8D%E5%90%8C%E8%A7%86%E5%9B%BE%E4%B9%8B%E9%97%B4%E7%9A%84%E8%BD%AC%E6%8D%A2"><span class="nav-number">3.</span> <span class="nav-text"> To treat software construction as the transformations between different views
-将“软件构造”看作“不同视图之间的转换”</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#to-know-quality-factors-to-be-cared-in-software-constructionbr%E8%BD%AF%E4%BB%B6%E6%9E%84%E9%80%A0%E8%BF%87%E7%A8%8B%E4%B8%AD%E5%BA%94%E8%80%83%E8%99%91%E7%9A%84%E9%87%8D%E8%A6%81%E8%B4%A8%E9%87%8F%E6%8C%87%E6%A0%87"><span class="nav-number">4.</span> <span class="nav-text"> To know quality factors to be cared in software construction
-软件构造过程中应考虑的重要质量指标</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#to-understand-the-consequences-if-quality-objectives-cannot-be-achievedbr%E5%A6%82%E6%9E%9C%E8%BE%BE%E4%B8%8D%E5%88%B0%E6%9C%9F%E6%9C%9B%E7%9A%84%E8%B4%A8%E9%87%8F%E7%9B%AE%E6%A0%87%E4%BC%9A%E6%9C%89%E4%BB%80%E4%B9%88%E5%90%8E%E6%9E%9C"><span class="nav-number">5.</span> <span class="nav-text"> To understand the consequences if quality objectives cannot be achieved
-如果达不到期望的质量目标，会有什么后果</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#to-know-what-construction-techniques-are-to-be-studied-for-each-quality-factor-in-this-coursebr%E6%9C%89%E5%93%AA%E4%BA%9B%E9%9D%A2%E5%90%91%E8%B4%A8%E9%87%8F%E6%8C%87%E6%A0%87%E7%9A%84%E8%BD%AF%E4%BB%B6%E6%9E%84%E9%80%A0%E6%8A%80%E6%9C%AF"><span class="nav-number">6.</span> <span class="nav-text"> To know what construction techniques are to be studied for each quality factor in this course
-有哪些面向质量指标的软件构造技术</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#to-understand-the-constituents-of-a-software-system-in-three-orthogonal-dimensionsbr%E4%BB%8E%E4%B8%89%E4%B8%AA%E7%BB%B4%E5%BA%A6%E7%9C%8B%E8%BD%AF%E4%BB%B6%E7%B3%BB%E7%BB%9F%E7%9A%84%E6%9E%84%E6%88%90"><span class="nav-number">1.</span> <span class="nav-text"> To understand the constituents of a software system in three orthogonal dimensions
+从三个维度看软件系统的构成</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#build-time-views"><span class="nav-number">1.1.</span> <span class="nav-text"> Build-time Views</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#runtime-views"><span class="nav-number">1.2.</span> <span class="nav-text"> Runtime Views</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%90%8D%E6%AC%A1%E8%A7%A3%E9%87%8A"><span class="nav-number">2.</span> <span class="nav-text"> 名次解释</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#code-churn"><span class="nav-number">2.1.</span> <span class="nav-text"> Code churn</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#software-configuration-item-sci%E9%85%8D%E7%BD%AE%E9%A1%B9"><span class="nav-number">2.2.</span> <span class="nav-text"> Software Configuration Item (SCI，配置项)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#memory-dump-%E5%86%85%E5%AD%98%E4%BF%A1%E6%81%AF%E8%BD%AC%E5%82%A8"><span class="nav-number">2.3.</span> <span class="nav-text"> Memory dump (内存信息转储)</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
