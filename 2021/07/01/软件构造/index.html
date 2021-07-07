@@ -34,7 +34,7 @@
 <meta property="og:image" content="https://transient91.github.io/images/%E8%BD%AF%E4%BB%B6%E6%9E%84%E9%80%A0/Spiral.jpg">
 <meta property="og:image" content="https://transient91.github.io/images/%E8%BD%AF%E4%BB%B6%E6%9E%84%E9%80%A0/Baselines.jpg">
 <meta property="article:published_time" content="2021-07-01T12:29:12.000Z">
-<meta property="article:modified_time" content="2021-07-06T12:18:42.152Z">
+<meta property="article:modified_time" content="2021-07-06T14:20:34.217Z">
 <meta property="article:author" content="transient91">
 <meta property="article:tag" content="软件构造">
 <meta name="twitter:card" content="summary">
@@ -188,7 +188,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2021-07-06 20:18:42" itemprop="dateModified" datetime="2021-07-06T20:18:42+08:00">2021-07-06</time>
+                <time title="Modified: 2021-07-06 22:20:34" itemprop="dateModified" datetime="2021-07-06T22:20:34+08:00">2021-07-06</time>
               </span>
 
           
@@ -396,6 +396,74 @@ V 字模型</li>
 <li>Head: the current version HEAD：<br />
 程序员正在其上工作的版本</li>
 </ul>
+<h3 id="version-control-system-vcs"><a class="markdownIt-Anchor" href="#version-control-system-vcs"></a> Version Control System (VCS)</h3>
+<ul>
+<li>Local VCS 本地版本控制系统
+<ul>
+<li>仓库存储于开发者本地机器</li>
+<li>无法共享和协作</li>
+</ul>
+</li>
+<li>Centralized VCS 集中式版本控制系统
+<ul>
+<li>仓库存储于独立的服务器，</li>
+<li>支持多开发者之间的协作</li>
+</ul>
+</li>
+<li>Distributed VCS 分布式版本控制系统
+<ul>
+<li>仓库存储于独立的服务器 + 每个开发者的本地机器</li>
+</ul>
+</li>
+</ul>
+<h1 id="data-type-and-type-checkingbr数据类型与类型检验"><a class="markdownIt-Anchor" href="#data-type-and-type-checkingbr数据类型与类型检验"></a> Data Type and Type Checking<br>数据类型与类型检验</h1>
+<h2 id="types-in-java"><a class="markdownIt-Anchor" href="#types-in-java"></a> Types in Java</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">Primitives<br>基本数据类型</th>
+<th style="text-align:center">Object Reference Types<br>对象数据类型</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">int, long, byte, short, char, float, double, boolean</td>
+<td style="text-align:center">Classes, interfaces, arrays, enums, annotations</td>
+</tr>
+<tr>
+<td style="text-align:center">No identity except their value<br>只有值，没有 ID (与其他值无法区分)</td>
+<td style="text-align:center">Have identity distinct from value<br>既有 ID，也有值</td>
+</tr>
+<tr>
+<td style="text-align:center">Immutable<br>不可变的</td>
+<td style="text-align:center">Some mutable, some not<br>可变/不可变</td>
+</tr>
+<tr>
+<td style="text-align:center">On stack, exist only when in use<br>在栈中分配内存</td>
+<td style="text-align:center">On heap, garbage collected<br>在堆中分配内存</td>
+</tr>
+<tr>
+<td style="text-align:center">Can’t achieve unity of expression</td>
+<td style="text-align:center">Unity of expression with generics</td>
+</tr>
+<tr>
+<td style="text-align:center">Dirt cheap<br>代价低</td>
+<td style="text-align:center">More costly<br>代价昂贵</td>
+</tr>
+</tbody>
+</table>
+<h1 id="designing-specification"><a class="markdownIt-Anchor" href="#designing-specification"></a> Designing Specification</h1>
+<h1 id="abstract-data-type-adt"><a class="markdownIt-Anchor" href="#abstract-data-type-adt"></a> Abstract Data Type (ADT)</h1>
+<p>representation Independence 表示独立性<br />
+Invariants 不变量<br />
+representation exposure 表示泄漏<br />
+representation invariants (RI) 表示不变量<br />
+abstraction functions (AF) 抽象函数</p>
+<h2 id="the-operations-of-an-abstract-type"><a class="markdownIt-Anchor" href="#the-operations-of-an-abstract-type"></a> the operations of an abstract type</h2>
+<p>creator(构造器): t* → T<br />
+producer(生产器): T+, t* → T<br />
+observer(观察器): T+, t* → t<br />
+mutator(变值器): T+, t* → void | t | T</p>
 
     </div>
 
@@ -483,7 +551,8 @@ V 字模型</li>
 从三个维度看软件系统的构成</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#build-time-views"><span class="nav-number">1.1.</span> <span class="nav-text"> Build-time Views</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#runtime-views"><span class="nav-number">1.2.</span> <span class="nav-text"> Runtime Views</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#code-churn"><span class="nav-number">1.3.</span> <span class="nav-text"> Code churn</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#software-configuration-item-sci%E9%85%8D%E7%BD%AE%E9%A1%B9"><span class="nav-number">1.4.</span> <span class="nav-text"> Software Configuration Item (SCI，配置项)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#memory-dump-%E5%86%85%E5%AD%98%E4%BF%A1%E6%81%AF%E8%BD%AC%E5%82%A8"><span class="nav-number">1.5.</span> <span class="nav-text"> Memory dump (内存信息转储)</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#software-construction-process-and-configuration-managementbr%E8%BD%AF%E4%BB%B6%E6%9E%84%E9%80%A0%E8%BF%87%E7%A8%8B%E4%B8%8E%E9%85%8D%E7%BD%AE%E7%AE%A1%E7%90%86"><span class="nav-number">2.</span> <span class="nav-text"> Software Construction Process and Configuration Management
 软件构造过程与配置管理</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#traditional-software-process-models"><span class="nav-number">2.1.</span> <span class="nav-text"> Traditional software process models</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#waterfall-sequential-non-iterativebr%E7%80%91%E5%B8%83%E8%BF%87%E7%A8%8B"><span class="nav-number">2.1.1.</span> <span class="nav-text"> Waterfall (sequential, non-iterative)
 瀑布过程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#incremental-non-iterativebr%E5%A2%9E%E9%87%8F%E8%BF%87%E7%A8%8B"><span class="nav-number">2.1.2.</span> <span class="nav-text"> Incremental (non-iterative)
-增量过程：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#v-model-for-verification-and-validation"><span class="nav-number">2.1.3.</span> <span class="nav-text"> V-Model (for verification and validation)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#prototyping-iterative"><span class="nav-number">2.1.4.</span> <span class="nav-text"> Prototyping (iterative)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#spiral-iterative"><span class="nav-number">2.1.5.</span> <span class="nav-text"> Spiral (iterative)</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#agile-development"><span class="nav-number">2.2.</span> <span class="nav-text"> Agile development</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#software-configuration-mgmt-scm"><span class="nav-number">2.3.</span> <span class="nav-text"> Software Configuration Mgmt. (SCM)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#configuration-items-sci-and-baselines"><span class="nav-number">2.4.</span> <span class="nav-text"> Configuration Items (SCI) and Baselines</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#cmdb"><span class="nav-number">2.5.</span> <span class="nav-text"> CMDB</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#version-control-terminology-%E6%9C%AF%E8%AF%AD"><span class="nav-number">2.6.</span> <span class="nav-text"> Version control terminology 术语</span></a></li></ol></li></ol></div>
+增量过程：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#v-model-for-verification-and-validation"><span class="nav-number">2.1.3.</span> <span class="nav-text"> V-Model (for verification and validation)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#prototyping-iterative"><span class="nav-number">2.1.4.</span> <span class="nav-text"> Prototyping (iterative)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#spiral-iterative"><span class="nav-number">2.1.5.</span> <span class="nav-text"> Spiral (iterative)</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#agile-development"><span class="nav-number">2.2.</span> <span class="nav-text"> Agile development</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#software-configuration-mgmt-scm"><span class="nav-number">2.3.</span> <span class="nav-text"> Software Configuration Mgmt. (SCM)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#configuration-items-sci-and-baselines"><span class="nav-number">2.4.</span> <span class="nav-text"> Configuration Items (SCI) and Baselines</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#cmdb"><span class="nav-number">2.5.</span> <span class="nav-text"> CMDB</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#version-control-terminology-%E6%9C%AF%E8%AF%AD"><span class="nav-number">2.6.</span> <span class="nav-text"> Version control terminology 术语</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#version-control-system-vcs"><span class="nav-number">2.6.1.</span> <span class="nav-text"> Version Control System (VCS)</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#data-type-and-type-checkingbr%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E4%B8%8E%E7%B1%BB%E5%9E%8B%E6%A3%80%E9%AA%8C"><span class="nav-number">3.</span> <span class="nav-text"> Data Type and Type Checking
+数据类型与类型检验</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#types-in-java"><span class="nav-number">3.1.</span> <span class="nav-text"> Types in Java</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#designing-specification"><span class="nav-number">4.</span> <span class="nav-text"> Designing Specification</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#abstract-data-type-adt"><span class="nav-number">5.</span> <span class="nav-text"> Abstract Data Type (ADT)</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#the-operations-of-an-abstract-type"><span class="nav-number">5.1.</span> <span class="nav-text"> the operations of an abstract type</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
