@@ -34,7 +34,7 @@
 <meta property="og:image" content="https://transient91.github.io/images/csapp%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/%E6%98%A0%E5%B0%84%E7%A7%81%E6%9C%89%E5%8C%BA%E5%9F%9F.png">
 <meta property="og:image" content="https://transient91.github.io/images/csapp%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/%E8%BF%9B%E7%A8%8B%E7%BB%84.png">
 <meta property="article:published_time" content="2021-06-22T14:43:33.000Z">
-<meta property="article:modified_time" content="2021-07-02T04:13:09.133Z">
+<meta property="article:modified_time" content="2021-07-14T12:34:15.601Z">
 <meta property="article:author" content="transient91">
 <meta property="article:tag" content="CSAPP">
 <meta name="twitter:card" content="summary">
@@ -188,7 +188,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2021-07-02 12:13:09" itemprop="dateModified" datetime="2021-07-02T12:13:09+08:00">2021-07-02</time>
+                <time title="Modified: 2021-07-14 20:34:15" itemprop="dateModified" datetime="2021-07-14T20:34:15+08:00">2021-07-14</time>
               </span>
 
           
@@ -688,7 +688,8 @@
 </tbody>
 </table>
 <h3 id="发送信号"><a class="markdownIt-Anchor" href="#发送信号"></a> 发送信号</h3>
-<p>  内核通过更新目的进程上下文中的某个状态，发送（递送）一个信号给目的进程。发送信号可以有如下两种原因：1)内核检测到一个系统事件，比如除零错误或者子进程终止。2)一个进程调用了 kill 函数，显式地要求内核发送一个信号给目的进程。一个进程可以发送信号给它自己。  Unix 系统提供了大量向进程发送信号的机制。所有这些机制都是基于进程组(processgroup)这个概念的。</p>
+<p>  内核通过更新目的进程上下文中的某个状态，发送（递送）一个信号给目的进程。发送信号可以有如下两种原因：1)内核检测到一个系统事件，比如除零错误或者子进程终止。2)一个进程调用了 kill 函数，显式地要求内核发送一个信号给目的进程。一个进程可以发送信号给它自己。<br />
+  Unix 系统提供了大量向进程发送信号的机制。所有这些机制都是基于进程组(processgroup)这个概念的。</p>
 <h4 id="进程组"><a class="markdownIt-Anchor" href="#进程组"></a> 进程组</h4>
 <p>  每个进程都只属于一个进程组，进程组是由一个正整数进程组 ID 来标识的。getpgrp 函数返回当前进程的进程组 ID:</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;unistd.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">pid_t</span> <span class="title">getpgrp</span><span class="params">(<span class="keyword">void</span>)</span></span>;</span><br></pre></td></tr></table></figure>
@@ -858,8 +859,8 @@
       <i class="fa fa-chevron-left"></i> CSAPP-第10章-系统级I/O
     </a></div>
       <div class="post-nav-item">
-    <a href="/2021/07/01/%E8%BD%AF%E4%BB%B6%E6%9E%84%E9%80%A0/" rel="next" title="Views and Quality Objectives of Software Construction<br>软件构造的多维度视图和质量目标">
-      Views and Quality Objectives of Software Construction<br>软件构造的多维度视图和质量目标 <i class="fa fa-chevron-right"></i>
+    <a href="/2021/07/01/%E8%BD%AF%E4%BB%B6%E6%9E%84%E9%80%A0/" rel="next" title="软件构造">
+      软件构造 <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
       </footer>
@@ -933,7 +934,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">6</span>
+          <span class="site-state-item-count">7</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
