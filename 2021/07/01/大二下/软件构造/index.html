@@ -1,0 +1,664 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="cnm 傻逼软构">
+<meta property="og:type" content="article">
+<meta property="og:title" content="软件构造">
+<meta property="og:url" content="http://example.com/2021/07/01/%E5%A4%A7%E4%BA%8C%E4%B8%8B/%E8%BD%AF%E4%BB%B6%E6%9E%84%E9%80%A0/index.html">
+<meta property="og:site_name" content="transient91&#39;s blog">
+<meta property="og:description" content="cnm 傻逼软构">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://transient91.github.io/images/%E8%BD%AF%E4%BB%B6%E6%9E%84%E9%80%A0/Waterfall.jpg">
+<meta property="og:image" content="https://transient91.github.io/images/%E8%BD%AF%E4%BB%B6%E6%9E%84%E9%80%A0/Incremental.jpg">
+<meta property="og:image" content="https://transient91.github.io/images/%E8%BD%AF%E4%BB%B6%E6%9E%84%E9%80%A0/V-Model.jpg">
+<meta property="og:image" content="https://transient91.github.io/images/%E8%BD%AF%E4%BB%B6%E6%9E%84%E9%80%A0/Prototyping.jpg">
+<meta property="og:image" content="https://transient91.github.io/images/%E8%BD%AF%E4%BB%B6%E6%9E%84%E9%80%A0/Spiral.jpg">
+<meta property="og:image" content="https://transient91.github.io/images/%E8%BD%AF%E4%BB%B6%E6%9E%84%E9%80%A0/Baselines.jpg">
+<meta property="article:published_time" content="2021-07-01T12:29:12.000Z">
+<meta property="article:modified_time" content="2021-07-14T12:32:56.725Z">
+<meta property="article:author" content="transient91">
+<meta property="article:tag" content="软件构造">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://transient91.github.io/images/%E8%BD%AF%E4%BB%B6%E6%9E%84%E9%80%A0/Waterfall.jpg">
+
+<link rel="canonical" href="http://example.com/2021/07/01/%E5%A4%A7%E4%BA%8C%E4%B8%8B/%E8%BD%AF%E4%BB%B6%E6%9E%84%E9%80%A0/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+
+  <title>软件构造 | transient91's blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">transient91's blog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/07/01/%E5%A4%A7%E4%BA%8C%E4%B8%8B/%E8%BD%AF%E4%BB%B6%E6%9E%84%E9%80%A0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="transient91">
+      <meta itemprop="description" content="blog">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="transient91's blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          软件构造
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2021-07-01 20:29:12" itemprop="dateCreated datePublished" datetime="2021-07-01T20:29:12+08:00">2021-07-01</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2021-07-14 20:32:56" itemprop="dateModified" datetime="2021-07-14T20:32:56+08:00">2021-07-14</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>cnm 傻逼软构</p>
+<span id="more"></span>
+<h1 id="to-understand-the-constituents-of-a-software-system-in-three-orthogonal-dimensionsbr从三个维度看软件系统的构成"><a class="markdownIt-Anchor" href="#to-understand-the-constituents-of-a-software-system-in-three-orthogonal-dimensionsbr从三个维度看软件系统的构成"></a> To understand the constituents of a software system in three orthogonal dimensions<br>从三个维度看软件系统的构成</h1>
+<ul>
+<li>By phases: build-time views and run-time views<br />
+按阶段划分：构造时/运行时视图</li>
+<li>By dynamics: moment views and period views<br />
+按动态性划分：时刻/阶段视图</li>
+<li>By levels: code views and component views<br />
+按构造对象的层次划分：代码/构件视图</li>
+</ul>
+<table>
+  <tr align="center">
+    <th> </th>
+    <th colspan="2">Moment</th>
+    <th colspan="2">Period</th>
+  </tr>
+  <tr align="center">
+    <td></td>
+    <td>Code-level</td>
+    <td>Component-level</td>
+    <td>Code-level</td>
+    <td>Component-level</td>
+  </tr>
+  <tr align="center">
+    <td>Build-time</td>
+    <td><span style="color:rgb(255, 69, 0);">Source code,</span><br>AST,<br><span style="color:rgb(255, 69, 0);">Interface-Class-<br>Attribute-Method</span><br>(Class Diagram)</td>
+    <td><span style="color:rgb(255, 69, 0);">Package, File,<br>Static Linking,<br>Library, Test Case,</span><br>Build Script(Component Diagram)</td>
+    <td><span style="color:rgb(255, 69, 0);">Code Churn</span></td>
+    <td><span style="color:rgb(255, 69, 0);">Configuration Item,<br>Version</span></td>
+  </tr>
+  <tr align="center">
+    <td rowspan="2">Run-time</td>
+    <td rowspan="2"><span style="color:rgb(255, 69, 0);">Code Snapshot,<br>Memory dump</span></td>
+    <td rowspan="2">Package, Library,<br>Dynamic linking,<br>Configuration, Database,<br>Middleware, Network,<br>Hardware (Deployment Diagram)</td>
+    <td>Execution stack trace,<br><span style="color:rgb(255, 69, 0);">Concurrent multi-threads</span></td>
+    <td>Event log,<br>Multi-processes,<br>Distributed processes</td>
+  </tr>
+  <tr align="center">
+    <td colspan="2">Procedure Call Graph,<br>Message Graph (Sequence Diagram)</td>
+  </tr>
+</table>
+<h2 id="build-time-views"><a class="markdownIt-Anchor" href="#build-time-views"></a> Build-time Views</h2>
+<p><span style="color:rgb(255, 150, 178);"><em>Build-time</em></span>(构造阶段): idea → requirement → design → <span style="color:rgb(255, 69, 0);">code</span> → installable / executable package</p>
+<ul>
+<li><span style="color:rgb(255, 150, 178);"><em>Code-level view</em></span>: source code ---- how source code are <span style="color:rgb(255, 69, 0);">logically</span> organizedby basic program blocks such as <span style="color:rgb(255, 69, 0);">functions, classes, methods, interfaces</span>, etc, and the dependencies among them<br />
+代码的逻辑组织</li>
+<li><span style="color:rgb(255, 150, 178);"><em>Component-level view</em></span>: architecture ---- how source code are <span style="color:rgb(255, 69, 0);">physically</span> organized by <span style="color:rgb(255, 69, 0);">files, directories, packages, libraries</span>, and the dependenciesamong them<br />
+代码的物理组织</li>
+</ul>
+<hr />
+<ul>
+<li><span style="color:rgb(255, 150, 178);"><em>Moment view</em></span>: what do source code and component look like <span style="color:rgb(255, 69, 0);">in a specific time</span><br />
+特定时刻的软件形态</li>
+<li><span style="color:rgb(255, 150, 178);"><em>Period view</em></span>: how do they evolve/change <span style="color:rgb(255, 69, 0);">along with time</span><br />
+软件形态随时间的变化</li>
+</ul>
+<h2 id="runtime-views"><a class="markdownIt-Anchor" href="#runtime-views"></a> Runtime Views</h2>
+<p><span style="color:rgb(255, 150, 178);"><em>Runtime</em></span>: what does a program look like when it runs inside the target machine, and what are all the disk files that the target machine needs to load into memory?<br />
+运行时：程序被载入目标机器，开始执行</p>
+<ul>
+<li><span style="color:rgb(255, 150, 178);"><em>Code-level view</em></span>: source code ---- what do the <span style="color:rgb(255, 69, 0);">in-memory states</span> of an executable program look like and how do program units (objects,functions, etc) interact with each other?<br />
+代码层面：逻辑实体在内存中如何呈现？</li>
+<li><span style="color:rgb(255, 150, 178);"><em>Component-level view</em></span>: architecture ---- how are software packages deployed into <span style="color:rgb(255, 69, 0);">physical environment</span> (OS, network, hardware, etc) and how do they interact?<br />
+构件层面：物理实体在物理硬件环境中如何呈现？</li>
+</ul>
+<hr />
+<ul>
+<li><span style="color:rgb(255, 150, 178);"><em>Moment view</em></span>: how do programs be have <span style="color:rgb(255, 69, 0);">in a specific time</span><br />
+逻辑/物理实体在内存/硬件环境中特定时刻的形态如何？</li>
+<li><span style="color:rgb(255, 150, 178);"><em>Period view</em></span>: how do they behave <span style="color:rgb(255, 69, 0);">along with time</span><br />
+逻辑/物理实体在内存/硬件环境中的形态随时间如何变化？</li>
+</ul>
+<h2 id="code-churn"><a class="markdownIt-Anchor" href="#code-churn"></a> Code churn</h2>
+<p>代码变化: Lines added, modified or deleted to a file from one version to another.</p>
+<h2 id="software-configuration-item-sci配置项"><a class="markdownIt-Anchor" href="#software-configuration-item-sci配置项"></a> Software Configuration Item (SCI，配置项)</h2>
+<p>  随着软件开发工作的开展，会得到许多工作产品或阶段产品，还会用到许多工具软件。所有这些独立的信息项都要得到妥善的管理，决不能出现混乱，以便于在提出某些特定的要求时，将它们进行约定的组合来满足使用的目的。这些信息项目是配針管理的对象，称为软件配置项。<br />
+  软件配置项目可以分为以下几类：</p>
+<ol>
+<li>环境类，指软件开发环境或软件维护环境，例如编译器、操作系统、编辑器、数据库管理系统、开发工具、项目管理工具、文档编制工具等；</li>
+<li>定义类，是需求分析与定义阶段结束后得到的工作产品，例如需求规格说明、项目开发计划、设计标准或设计准则、验收测试计划等：</li>
+<li>设计类，设计阶段结束后得到的工作产品，例如系统设计规格说明、程序规格说明、数据库设计、编码标准、用户界面标准、测试标准、系统测试计划、用户手册等;</li>
+<li>测试类，系统测试完成后的工作产品，例如系统测试数据、系统测试结果、操作手册、安装手册等：</li>
+<li>维护类，进入维护阶段以后产生的工作产品。</li>
+</ol>
+<p>转自：<a target="_blank" rel="noopener" href="https://blog.csdn.net/trecn001/article/details/104629296/">https://blog.csdn.net/trecn001/article/details/104629296/</a></p>
+<h2 id="memory-dump-内存信息转储"><a class="markdownIt-Anchor" href="#memory-dump-内存信息转储"></a> Memory dump (内存信息转储)</h2>
+<p>Memory dump: a file on hard disk containing a copy of the contents of a process’s memory, produced when a process is aborted by certain kinds of internal error or signal.</p>
+<ul>
+<li><span style="color:rgb(255, 69, 0);">Debuggers</span> can load the dump file and display the information it contains about the state of the running program.</li>
+<li><span style="color:rgb(255, 69, 0);">Information</span> includes the contents of registers, the call stack and all other program data (counters, variables, switches, flags, etc).</li>
+<li>It is taken in order to <span style="color:rgb(255, 69, 0);">analyze</span> the status of the program, and the programmer looks into the memory buffers to see which data items were being worked on at the time of failure.</li>
+</ul>
+<h1 id="software-construction-process-and-configuration-managementbr软件构造过程与配置管理"><a class="markdownIt-Anchor" href="#software-construction-process-and-configuration-managementbr软件构造过程与配置管理"></a> Software Construction Process and Configuration Management<br>软件构造过程与配置管理</h1>
+<h2 id="traditional-software-process-models"><a class="markdownIt-Anchor" href="#traditional-software-process-models"></a> Traditional software process models</h2>
+<p>Two basic types:</p>
+<ul>
+<li>Linear 线性过程</li>
+<li>Iterative 迭代过程</li>
+</ul>
+<p>Existing models:</p>
+<ul>
+<li>Waterfall (Linear, non-iterative)<br />
+瀑布过程</li>
+<li>Incremental (non-iterative) 增量过程</li>
+<li>V-Model (for verification and validation)<br />
+V 字模型</li>
+<li>Prototyping (iterative)<br />
+原型过程</li>
+<li>Spiral (iterative)<br />
+螺旋模型</li>
+</ul>
+<p>Key quality considerations:<br />
+选择合适的过程模型的依据:</p>
+<ul>
+<li>User involvement (adapt to changes)<br />
+用户参与程度有多大？–适应变化的能力</li>
+<li>Development efficiency, management complexity<br />
+开发效率/管理复杂度</li>
+<li>Quality of software<br />
+开发出的软件的质量</li>
+</ul>
+<h3 id="waterfall-sequential-non-iterativebr瀑布过程"><a class="markdownIt-Anchor" href="#waterfall-sequential-non-iterativebr瀑布过程"></a> Waterfall (sequential, non-iterative)<br>瀑布过程</h3>
+<ul>
+<li>线性推进</li>
+<li>阶段划分清楚</li>
+<li>整体推进</li>
+<li>无迭代</li>
+<li>管理简单</li>
+<li>无法适应需求增加/变化</li>
+</ul>
+<p><img src="https://transient91.github.io/images/%E8%BD%AF%E4%BB%B6%E6%9E%84%E9%80%A0/Waterfall.jpg" alt="Waterfall.jpg" /></p>
+<h3 id="incremental-non-iterativebr增量过程"><a class="markdownIt-Anchor" href="#incremental-non-iterativebr增量过程"></a> Incremental (non-iterative)<br>增量过程：</h3>
+<ul>
+<li>线性推进</li>
+<li>增量式（多个瀑布的串行）</li>
+<li>无迭代</li>
+<li>比较容易适应需求的增加</li>
+</ul>
+<p><img src="https://transient91.github.io/images/%E8%BD%AF%E4%BB%B6%E6%9E%84%E9%80%A0/Incremental.jpg" alt="Incremental.jpg" /></p>
+<h3 id="v-model-for-verification-and-validation"><a class="markdownIt-Anchor" href="#v-model-for-verification-and-validation"></a> V-Model (for verification and validation)</h3>
+<p>V-model represents a development process that may be considered an extension of the waterfall model. （验证与确认）</p>
+<p><img src="https://transient91.github.io/images/%E8%BD%AF%E4%BB%B6%E6%9E%84%E9%80%A0/V-Model.jpg" alt="V-Model.jpg" /></p>
+<h3 id="prototyping-iterative"><a class="markdownIt-Anchor" href="#prototyping-iterative"></a> Prototyping (iterative)</h3>
+<p>迭代：开发出来之后由用户试用/评审，发现问题反馈给开发者，开发者修改原有的实现，继续交给用户评审。</p>
+<p>在原型上持续不断的迭代<br />
+发现用户变化的需求<br />
+循环往复这个过程，直到用户满意为止。<br />
+时间代价高，但开发质量也高。</p>
+<p><img src="https://transient91.github.io/images/%E8%BD%AF%E4%BB%B6%E6%9E%84%E9%80%A0/Prototyping.jpg" alt="Prototyping.jpg" /></p>
+<h3 id="spiral-iterative"><a class="markdownIt-Anchor" href="#spiral-iterative"></a> Spiral (iterative)</h3>
+<p>非常复杂的过程：</p>
+<ul>
+<li>多轮迭代基本遵循瀑布模式</li>
+<li>每轮迭代有明确的目标，遵循“原型”过程，进行严格的风险分析，方可进入下一轮迭代</li>
+</ul>
+<p><img src="https://transient91.github.io/images/%E8%BD%AF%E4%BB%B6%E6%9E%84%E9%80%A0/Spiral.jpg" alt="Spiral.jpg" /></p>
+<h2 id="agile-development"><a class="markdownIt-Anchor" href="#agile-development"></a> Agile development</h2>
+<p>It advocates adaptive planning, evolutionary development, early delivery, and continuous improvement, and it encourages rapid and flexible response to change.<br />
+敏捷开发：通过快速迭代和小规模的持续改进，以快速适应变化。</p>
+<p>Agile = 增量 + 迭代<br />
+每次迭代处理一个小规模增量</p>
+<h2 id="software-configuration-mgmt-scm"><a class="markdownIt-Anchor" href="#software-configuration-mgmt-scm"></a> Software Configuration Mgmt. (SCM)</h2>
+<ul>
+<li>SCM is the task of tracking and controlling changes in the software.<br />
+软件配置管理：追踪和控制软件的变化</li>
+<li>SCM practices include revision control and the establishment of baselines.</li>
+</ul>
+<h2 id="configuration-items-sci-and-baselines"><a class="markdownIt-Anchor" href="#configuration-items-sci-and-baselines"></a> Configuration Items (SCI) and Baselines</h2>
+<ul>
+<li>Software Configuration Item (SCI): the fundamental structural unit of SCM.<br />
+软件配置项：软件中发生变化的基本单元（例如：文件）</li>
+<li>A baseline is an agreed description of the attributes of a product, at a point in time, which serves as a basis for defining change.<br />
+基线：软件持续变化过程中的“稳定时刻”（例如：对外发布的版本）</li>
+</ul>
+<p><img src="https://transient91.github.io/images/%E8%BD%AF%E4%BB%B6%E6%9E%84%E9%80%A0/Baselines.jpg" alt="Baselines.jpg" /></p>
+<h2 id="cmdb"><a class="markdownIt-Anchor" href="#cmdb"></a> CMDB</h2>
+<p>CMDB：配置管理数据库<br />
+存储软件的各配置项随时间发生变化的信息 + 基线</p>
+<h2 id="version-control-terminology-术语"><a class="markdownIt-Anchor" href="#version-control-terminology-术语"></a> Version control terminology 术语</h2>
+<ul>
+<li>Repository: a local or remote store of the versions in a project<br />
+仓库：即于 SCM 中的 CMDB</li>
+<li>Working copy: a local, editable copy of a project that we can work on<br />
+工作拷贝：在开发者本地机器上的一份项目拷贝</li>
+<li>File: a single file in the project<br />
+文件：一个独立的配置项</li>
+<li>Version or revision: a record of the contents of the project at a pointin time<br />
+版本：在某个特定时间点的所有文件的共同状态</li>
+<li>Change or diff: the difference between two versions<br />
+变化：即 code churn，两个版本之间的差异</li>
+<li>Head: the current version HEAD：<br />
+程序员正在其上工作的版本</li>
+</ul>
+<h3 id="version-control-system-vcs"><a class="markdownIt-Anchor" href="#version-control-system-vcs"></a> Version Control System (VCS)</h3>
+<ul>
+<li>Local VCS 本地版本控制系统
+<ul>
+<li>仓库存储于开发者本地机器</li>
+<li>无法共享和协作</li>
+</ul>
+</li>
+<li>Centralized VCS 集中式版本控制系统
+<ul>
+<li>仓库存储于独立的服务器，</li>
+<li>支持多开发者之间的协作</li>
+</ul>
+</li>
+<li>Distributed VCS 分布式版本控制系统
+<ul>
+<li>仓库存储于独立的服务器 + 每个开发者的本地机器</li>
+</ul>
+</li>
+</ul>
+<h1 id="data-type-and-type-checkingbr数据类型与类型检验"><a class="markdownIt-Anchor" href="#data-type-and-type-checkingbr数据类型与类型检验"></a> Data Type and Type Checking<br>数据类型与类型检验</h1>
+<h2 id="types-in-java"><a class="markdownIt-Anchor" href="#types-in-java"></a> Types in Java</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">Primitives<br>基本数据类型</th>
+<th style="text-align:center">Object Reference Types<br>对象数据类型</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">int, long, byte, short, char, float, double, boolean</td>
+<td style="text-align:center">Classes, interfaces, arrays, enums, annotations</td>
+</tr>
+<tr>
+<td style="text-align:center">No identity except their value<br>只有值，没有 ID (与其他值无法区分)</td>
+<td style="text-align:center">Have identity distinct from value<br>既有 ID，也有值</td>
+</tr>
+<tr>
+<td style="text-align:center">Immutable<br>不可变的</td>
+<td style="text-align:center">Some mutable, some not<br>可变/不可变</td>
+</tr>
+<tr>
+<td style="text-align:center">On stack, exist only when in use<br>在栈中分配内存</td>
+<td style="text-align:center">On heap, garbage collected<br>在堆中分配内存</td>
+</tr>
+<tr>
+<td style="text-align:center">Can’t achieve unity of expression</td>
+<td style="text-align:center">Unity of expression with generics</td>
+</tr>
+<tr>
+<td style="text-align:center">Dirt cheap<br>代价低</td>
+<td style="text-align:center">More costly<br>代价昂贵</td>
+</tr>
+</tbody>
+</table>
+<h1 id="designing-specification"><a class="markdownIt-Anchor" href="#designing-specification"></a> Designing Specification</h1>
+<h1 id="abstract-data-type-adt"><a class="markdownIt-Anchor" href="#abstract-data-type-adt"></a> Abstract Data Type (ADT)</h1>
+<p>representation Independence 表示独立性<br />
+Invariants 不变量<br />
+representation exposure 表示泄漏<br />
+representation invariants (RI) 表示不变量<br />
+abstraction functions (AF) 抽象函数</p>
+<h2 id="the-operations-of-an-abstract-type"><a class="markdownIt-Anchor" href="#the-operations-of-an-abstract-type"></a> the operations of an abstract type</h2>
+<p>creator(构造器): t* → T<br />
+producer(生产器): T+, t* → T<br />
+observer(观察器): T+, t* → t<br />
+mutator(变值器): T+, t* → void | t | T</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E8%BD%AF%E4%BB%B6%E6%9E%84%E9%80%A0/" rel="tag"># 软件构造</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2021/06/22/%E5%A4%A7%E4%BA%8C%E4%B8%8B/csapp%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/" rel="prev" title="csapp期末复习">
+      <i class="fa fa-chevron-left"></i> csapp期末复习
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2021/07/01/%E5%A4%A7%E4%BA%8C%E4%B8%8B/%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8/" rel="next" title="信息安全">
+      信息安全 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#to-understand-the-constituents-of-a-software-system-in-three-orthogonal-dimensionsbr%E4%BB%8E%E4%B8%89%E4%B8%AA%E7%BB%B4%E5%BA%A6%E7%9C%8B%E8%BD%AF%E4%BB%B6%E7%B3%BB%E7%BB%9F%E7%9A%84%E6%9E%84%E6%88%90"><span class="nav-number">1.</span> <span class="nav-text"> To understand the constituents of a software system in three orthogonal dimensions
+从三个维度看软件系统的构成</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#build-time-views"><span class="nav-number">1.1.</span> <span class="nav-text"> Build-time Views</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#runtime-views"><span class="nav-number">1.2.</span> <span class="nav-text"> Runtime Views</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#code-churn"><span class="nav-number">1.3.</span> <span class="nav-text"> Code churn</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#software-configuration-item-sci%E9%85%8D%E7%BD%AE%E9%A1%B9"><span class="nav-number">1.4.</span> <span class="nav-text"> Software Configuration Item (SCI，配置项)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#memory-dump-%E5%86%85%E5%AD%98%E4%BF%A1%E6%81%AF%E8%BD%AC%E5%82%A8"><span class="nav-number">1.5.</span> <span class="nav-text"> Memory dump (内存信息转储)</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#software-construction-process-and-configuration-managementbr%E8%BD%AF%E4%BB%B6%E6%9E%84%E9%80%A0%E8%BF%87%E7%A8%8B%E4%B8%8E%E9%85%8D%E7%BD%AE%E7%AE%A1%E7%90%86"><span class="nav-number">2.</span> <span class="nav-text"> Software Construction Process and Configuration Management
+软件构造过程与配置管理</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#traditional-software-process-models"><span class="nav-number">2.1.</span> <span class="nav-text"> Traditional software process models</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#waterfall-sequential-non-iterativebr%E7%80%91%E5%B8%83%E8%BF%87%E7%A8%8B"><span class="nav-number">2.1.1.</span> <span class="nav-text"> Waterfall (sequential, non-iterative)
+瀑布过程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#incremental-non-iterativebr%E5%A2%9E%E9%87%8F%E8%BF%87%E7%A8%8B"><span class="nav-number">2.1.2.</span> <span class="nav-text"> Incremental (non-iterative)
+增量过程：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#v-model-for-verification-and-validation"><span class="nav-number">2.1.3.</span> <span class="nav-text"> V-Model (for verification and validation)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#prototyping-iterative"><span class="nav-number">2.1.4.</span> <span class="nav-text"> Prototyping (iterative)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#spiral-iterative"><span class="nav-number">2.1.5.</span> <span class="nav-text"> Spiral (iterative)</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#agile-development"><span class="nav-number">2.2.</span> <span class="nav-text"> Agile development</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#software-configuration-mgmt-scm"><span class="nav-number">2.3.</span> <span class="nav-text"> Software Configuration Mgmt. (SCM)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#configuration-items-sci-and-baselines"><span class="nav-number">2.4.</span> <span class="nav-text"> Configuration Items (SCI) and Baselines</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#cmdb"><span class="nav-number">2.5.</span> <span class="nav-text"> CMDB</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#version-control-terminology-%E6%9C%AF%E8%AF%AD"><span class="nav-number">2.6.</span> <span class="nav-text"> Version control terminology 术语</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#version-control-system-vcs"><span class="nav-number">2.6.1.</span> <span class="nav-text"> Version Control System (VCS)</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#data-type-and-type-checkingbr%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E4%B8%8E%E7%B1%BB%E5%9E%8B%E6%A3%80%E9%AA%8C"><span class="nav-number">3.</span> <span class="nav-text"> Data Type and Type Checking
+数据类型与类型检验</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#types-in-java"><span class="nav-number">3.1.</span> <span class="nav-text"> Types in Java</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#designing-specification"><span class="nav-number">4.</span> <span class="nav-text"> Designing Specification</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#abstract-data-type-adt"><span class="nav-number">5.</span> <span class="nav-text"> Abstract Data Type (ADT)</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#the-operations-of-an-abstract-type"><span class="nav-number">5.1.</span> <span class="nav-text"> the operations of an abstract type</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">transient91</p>
+  <div class="site-description" itemprop="description">blog</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">10</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">tags</span>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">transient91</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a>
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+</body>
+</html>
