@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="企业实训论文">
+<meta property="og:type" content="article">
+<meta property="og:title" content="A Survey of Automatic Software Vulnerability Detection, Program Repair, and Defect Prediction Techniques">
+<meta property="og:url" content="http://example.com/2021/07/14/%E4%BC%81%E4%B8%9A%E5%AE%9E%E8%AE%AD%E8%AE%BA%E6%96%87/index.html">
+<meta property="og:site_name" content="transient91&#39;s blog">
+<meta property="og:description" content="企业实训论文">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://transient91.github.io/images/%E5%AE%9E%E8%AE%AD%E8%AE%BA%E6%96%87/%E8%A1%A81.png">
+<meta property="og:image" content="https://transient91.github.io/images/%E5%AE%9E%E8%AE%AD%E8%AE%BA%E6%96%87/%E8%A1%A82.png">
+<meta property="og:image" content="https://transient91.github.io/images/%E5%AE%9E%E8%AE%AD%E8%AE%BA%E6%96%87/%E8%A1%A83.png">
+<meta property="og:image" content="https://transient91.github.io/images/%E5%AE%9E%E8%AE%AD%E8%AE%BA%E6%96%87/%E8%A1%A84.png">
+<meta property="article:published_time" content="2021-07-14T12:35:39.000Z">
+<meta property="article:modified_time" content="2021-08-23T15:30:40.213Z">
+<meta property="article:author" content="transient91">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://transient91.github.io/images/%E5%AE%9E%E8%AE%AD%E8%AE%BA%E6%96%87/%E8%A1%A81.png">
+
+<link rel="canonical" href="http://example.com/2021/07/14/%E4%BC%81%E4%B8%9A%E5%AE%9E%E8%AE%AD%E8%AE%BA%E6%96%87/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+
+  <title>A Survey of Automatic Software Vulnerability Detection, Program Repair, and Defect Prediction Techniques | transient91's blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">transient91's blog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/07/14/%E4%BC%81%E4%B8%9A%E5%AE%9E%E8%AE%AD%E8%AE%BA%E6%96%87/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="transient91">
+      <meta itemprop="description" content="blog">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="transient91's blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          A Survey of Automatic Software Vulnerability Detection, Program Repair, and Defect Prediction Techniques
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2021-07-14 20:35:39" itemprop="dateCreated datePublished" datetime="2021-07-14T20:35:39+08:00">2021-07-14</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2021-08-23 23:30:40" itemprop="dateModified" datetime="2021-08-23T23:30:40+08:00">2021-08-23</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>企业实训论文</p>
+<span id="more"></span>
+<h1 id="automatic-software-vulnerability-detection软件漏洞自动检测"><a class="markdownIt-Anchor" href="#automatic-software-vulnerability-detection软件漏洞自动检测"></a> Automatic Software Vulnerability Detection(软件漏洞自动检测)</h1>
+<p>  根据静态分析技术，漏洞处理方法进一步分为基于代码相似度的漏洞检测方法和基于代码模式的漏洞检测方法。</p>
+<p><img src="https://transient91.github.io/images/%E5%AE%9E%E8%AE%AD%E8%AE%BA%E6%96%87/%E8%A1%A81.png" alt="表1.png" /><br />
+<img src="https://transient91.github.io/images/%E5%AE%9E%E8%AE%AD%E8%AE%BA%E6%96%87/%E8%A1%A82.png" alt="表2.png" /></p>
+<h2 id="code-similarity-based-vulnerability-detection基于代码相似性的漏洞检测"><a class="markdownIt-Anchor" href="#code-similarity-based-vulnerability-detection基于代码相似性的漏洞检测"></a> Code Similarity-Based Vulnerability Detection(基于代码相似性的漏洞检测)</h2>
+<p>  又称 clone detection(克隆检测)，其核心思想是相似的程序代码具有相似的软件漏洞。四种常见的克隆类型:</p>
+<ul>
+<li>Type-1 (T1)：克隆是相同的代码片段，可能包含空白、布局或注释的变化</li>
+<li>Type-2 (T2)：克隆是允许标识符、文字、类型、空白、布局和注释变化的代码片段</li>
+<li>Type-3 (T3)：克隆允许额外的修改，如更改、添加或删除语句</li>
+<li>Type-4 (T4)：克隆还包括语义相同但语法不同的代码片段</li>
+</ul>
+<h3 id="grammar-based-clone-detection-methods基于语法的克隆检测方法"><a class="markdownIt-Anchor" href="#grammar-based-clone-detection-methods基于语法的克隆检测方法"></a> Grammar-Based Clone Detection Methods(基于语法的克隆检测方法)</h3>
+<p>  源代码的表示方式决定了信息提取的上限，进一步限制了模型设计和相似性度量算法的选择，最终影响检测效果。传统的基于文本的表示方法，处理数据只涉及程序代码中注释和空格的去除，主要是基于文本相似性度量方法来检测文本级克隆。然而，基于树的表示方法通过解释器分析程序代码来处理数据，其度量算法考虑了更多的程序结构信息，从语法层面检测代码克隆。<br />
+  目前，基于深度学习的方法通过构建抽象语法树截取关键节点信息，将其转化为特征向量或哈希值，然后选择合适的神经网络模型进行训练，最后利用该模型实现克隆比较。</p>
+<p><img src="https://transient91.github.io/images/%E5%AE%9E%E8%AE%AD%E8%AE%BA%E6%96%87/%E8%A1%A83.png" alt="表3.png" /></p>
+<h4 id="cclearner"><a class="markdownIt-Anchor" href="#cclearner"></a> CCLearner</h4>
+<ul>
+<li>提出了一种基于句子的深度学习代码克隆检测方法，定义了 8 种标记类型。</li>
+<li>首先，使用 ANTLR 解析每个方法并提取 C1–C3，并使用 Eclipse ASTParser 为每个方法创建一个抽象语法树，以进一步提取 C4–C8 令牌。然后，计算每种方法中每种类型标记的频率和方法对之间的相似度，将其输入到分类器进行训练，以检测给定代码库的克隆。</li>
+<li>由于标记只揭示了语法层面的代码关系，这种方法度量代码函数之间相似性的能力是有限的。</li>
+<li>只使用关于源代码的词法信息，不考虑代码结构信息，这使得检测功能克隆对变得困难。</li>
+</ul>
+<h4 id="cldh"><a class="markdownIt-Anchor" href="#cldh"></a> CLDH</h4>
+<ul>
+<li>提出了一种称为 CDLH 的端到端深度学习框架</li>
+<li>以有监督的方式捕获代码片段功能行为的词法和句法信息，并进行哈希，以进一步将实值表示转换为二进制哈希代码。</li>
+<li>与 CCLearner 相比，学习到的特征更加紧凑，显著提高了检测效率，节省了存储空间。</li>
+</ul>
+<h4 id="white-et-al"><a class="markdownIt-Anchor" href="#white-et-al"></a> White et al.</h4>
+<ul>
+<li>综合考虑了代码结构和标识符，同时用于建模。</li>
+<li>与 CCLearner 基于令牌频率统计的工作不同，本文使用贪婪的方式在多个树结构之间进行转换来表征代码，并使用 RtNN 模型将代码片段中相似的术语映射到相似的连续值向量。此外，该模型基于 RvNN 模型来学习不同粒度级别的代码片段。在实验集中，使用 ANTLR 对源代码进行标记化，使用 RNNLM 工具包 为每个系统训练几个 RtNNs，改变隐藏层的大小和深度。然后，用困惑度作为评价模型质量的代理，模型质量越高，精度越好。</li>
+</ul>
+<h4 id="marastoni-et-al"><a class="markdownIt-Anchor" href="#marastoni-et-al"></a> Marastoni et al.</h4>
+<ul>
+<li>提出了一种新的程序相似性检测方法，将二进制代码转换成图像数据，输入训练模型的 CNN 网络。</li>
+<li>同时，作者使用 Tigress C obfuscator (C 混淆器)迭代转换语法对原始数据集进行扩展，对模型进行全面训练。由于 CNN 网络需要查看从二进制文件中提取的整个图像来完成每个文件的分类，二进制可执行文件的大小限制了系统的性能。</li>
+<li>在实验阶段，CNN 中的所有权重都是用从标准差设置为 0.1 的正态分布中获取的随机值初始化的，以避免在早期阶段陷入局部极小值，并进一步微调以下参数以提高模型的性能 :test_ratio、 gradient_rate、 limit、random_seed 和 norm。</li>
+</ul>
+<h4 id="各种代码表征方法组合"><a class="markdownIt-Anchor" href="#各种代码表征方法组合"></a> 各种代码表征方法组合</h4>
+<ul>
+<li>实现了四种代码表示 :标识符、抽象语法树、控制流图和字节码，并为每种表示训练了一个模型。实验结果表明，通过整合不同的模型，可以进一步提高代码克隆检测的准确性。</li>
+</ul>
+<hr />
+<p>  与文本和标记方法相比，基于语法的代码表示方法考虑了程序代码的结构信息，对于程序语句的序列转换和微小的修改具有更好的容错性。然而，基于树的方法仍然面临一些缺点。随着程序逻辑结构的增强，构建程序抽象语法树的复杂度增加，进一步导致提取关键代码和向量变换操作的计算开销增加。</p>
+<h3 id="semantic-based-clone-detection-methods基于语义的克隆检测方法"><a class="markdownIt-Anchor" href="#semantic-based-clone-detection-methods基于语义的克隆检测方法"></a> Semantic-Based Clone Detection Methods(基于语义的克隆检测方法)</h3>
+<p>  语义层的代码表示不仅考虑了源代码的语法，还利用了关于程序代码的控制流和数据流信息，解决了代码功能层的代码克隆检测问题。由程序生成的数据流图 DFG、控制流图 CFG 和程序依赖图 PDG 是目前主流的表示方法。<br />
+  程序有定义良好的语法，抽象语法树可以很好的表现出来。 AST 在语法级克隆检测中表现出了很好的效果，但是它不能有效地检测不连续的代码克隆。</p>
+<p><img src="https://transient91.github.io/images/%E5%AE%9E%E8%AE%AD%E8%AE%BA%E6%96%87/%E8%A1%A84.png" alt="表4.png" /></p>
+<p>  与一般的自然语言文本特征相比，基于语义的方法充分考虑了程序结构、序列和特殊的语法信息，深化了语义特征。然而，基于语义的表示技术需要使用生成器为每种编程语言生成程序依赖图，可扩展性差，很少谈到神经网络模型的选择和优化。<br />
+  在现有的代码相似性检测方法中，通常使用四层网络结构模型。 RNN 和 CNN 在数据关系处理和特征提取方面各有优势，其优势可以考虑设计新的网络结构。对于特征参数的选择，可以借鉴 k-fold 交叉验证的训练方法。</p>
+<h2 id="code-pattern-based-vulnerability-detection基于代码模式的漏洞检测"><a class="markdownIt-Anchor" href="#code-pattern-based-vulnerability-detection基于代码模式的漏洞检测"></a> Code Pattern-Based Vulnerability Detection(基于代码模式的漏洞检测)</h2>
+<ul>
+<li>基于代码模式的漏洞检测技术主要涉及两个阶段。
+<ol>
+<li>在训练阶段，利用控制流和数据流技术提取程序中的关键代码，借助当前主流工具 (如 word2vec)将其转化为向量，输入适当的神经网络进行监督训练。</li>
+<li>在检测阶段，对新的软件程序执行相同的数据处理，用于通过学习的模型检测现有的漏洞。</li>
+</ol>
+</li>
+<li>根据程序是否需要运行，基于代码模式的漏洞检测方法分为静态检测方法和动态检测方法</li>
+<li>目前用于模型训练的网络结构包括 CNN、 RNN 和 LSTM。</li>
+</ul>
+<h3 id="static-detection-methods静态检测方法"><a class="markdownIt-Anchor" href="#static-detection-methods静态检测方法"></a> Static Detection Methods(静态检测方法)</h3>
+<p>  静态检测方法。 静态分析是指在不运行软件的情况下，通过构造抽象语法树和程序依赖图进行程序分析的过程，其分析对象通常是源代码或可执行代码。与可执行代码相比，源代码分析可以获得更多的语义信息，综合考虑执行路径上的信息，从而发现更多的漏洞，提高命中率。</p>
+<p>  基于深度学习的静态漏洞检测方法在源代码层面分析程序代码的依赖性，并基于程序切片的思想对易受攻击的代码进行预处理。现有的研究中，每个样本代码的标注都需要手动进行，模型只针对特定语言和类型的漏洞，不适合扩展到大型项目。同时，不同特征参数的选取对神经网络模型的影响在文章现有的方法中没有过多的解释。</p>
+<h3 id="dynamic-detection-methods动态检测方法"><a class="markdownIt-Anchor" href="#dynamic-detection-methods动态检测方法"></a> Dynamic Detection Methods(动态检测方法)</h3>
+<p>  动态检测方法。 动态分析是通过运行特定程序并获取程序的输出或内部状态等信息来验证或发现软件漏洞的过程，分析的对象是可执行代码。与静态方法相比，动态方法通过分析漏洞来获取特定的操作信息，因此所分析的漏洞通常更准确，误报率更低。</p>
+<p>  静态分析工具已被证明在特定应用领域特别有效，例如嵌入式系统或航空航天应用。然而，在更常见的软件上使用这些技术要困难得多。</p>
+<h1 id="automatic-software-program-repair自动软件程序修复"><a class="markdownIt-Anchor" href="#automatic-software-program-repair自动软件程序修复"></a> Automatic Software Program Repair(自动软件程序修复)</h1>
+<p>  早期的自动修补技术主要用于防止蠕虫的传播，随着技术的发展，自动修补技术慢慢渗透到计算机软件安全的各个方面。程序自动修复技术可以辅助软件程序中某些缺陷的自动修复，从而有效减少软件开发人员的程序调试时间。</p>
+<h2 id="patching-process修补过程"><a class="markdownIt-Anchor" href="#patching-process修补过程"></a> Patching Process(修补过程)</h2>
+<p>自动修补技术分为以下三个阶段: 软件故障定位阶段、补丁生成阶段和补丁评估阶段。</p>
+<h3 id="the-software-fault-location-phase软件故障定位阶段"><a class="markdownIt-Anchor" href="#the-software-fault-location-phase软件故障定位阶段"></a> the software fault location phase(软件故障定位阶段)</h3>
+<p>  软件故障定位是程序自动修复的先决条件，主要用于识别程序中潜在缺陷或漏洞的位置。目前，常用的故障定位技术分为两类: 静态故障定位技术和动态故障定位技术。</p>
+<ul>
+<li>静态故障定位技术主要通过程序分析技术获得被测程序代码之间的控制依赖和数据依赖关系，从而确定和定位故障位置。</li>
+<li>动态故障定位技术通过执行预选的测试用例来获得程序的执行信息，并通过分析程序的执行流程来定位缺陷语句在测试程序中的位置。</li>
+</ul>
+<h3 id="the-patch-generation-phase补丁生成阶段"><a class="markdownIt-Anchor" href="#the-patch-generation-phase补丁生成阶段"></a> the patch generation phase(补丁生成阶段)</h3>
+<p>  构建补丁阶段通过检查程序代码结构和分析示例代码提交和修改信息来定义一些操作规则，然后通过定义的操作修改缺陷语句。</p>
+<p>基于搜索和语义，通常使用两种补丁生成方法。</p>
+<ul>
+<li>基于搜索的补丁生成方法是在搜索空间中找到补丁并对其进行验证的过程，通常通过缩放搜索空间大小和优化搜索策略来提高补丁生成效率。</li>
+<li>基于语义的补丁生成方法通过集成诸如故障定位、约束求解和程序合成等技术来生成补丁。</li>
+</ul>
+<h3 id="the-patch-evaluation-phase补丁评估阶段"><a class="markdownIt-Anchor" href="#the-patch-evaluation-phase补丁评估阶段"></a> the patch evaluation phase(补丁评估阶段)</h3>
+<p>  补丁评估阶段评估生成的候选补丁，直到找到能够让程序执行所有测试用例的补丁。</p>
+<h1 id="grammar-based-patching-technology基于语法的修补技术"><a class="markdownIt-Anchor" href="#grammar-based-patching-technology基于语法的修补技术"></a> Grammar-Based Patching Technology(基于语法的修补技术)</h1>
+<p>  基于语法错误的程序修复技术通过学习代码语法特征来修改错误代码，以达到特定的语言规范。</p>
+<h2 id="token-level-learning-and-repair-technology令牌级学习和修复技术"><a class="markdownIt-Anchor" href="#token-level-learning-and-repair-technology令牌级学习和修复技术"></a> Token-Level Learning and Repair Technology(令牌级学习和修复技术)</h2>
+<p>  计算机程序的源代码是一种类似于自然语言的语法结构的纯文本表示，其中自然语言技术和深度学习技术的发展使得基于学习的修复成为可能。<br />
+  token-level task, 即 BERT 模型预训练的两个任务之一, 等价于完形填空任务, 即给出句子中其他的上下文 token, 推测出当前位置应当是什么 token.</p>
+<h2 id="text-based-learning-and-repair-technology基于文本的学习和修复技术"><a class="markdownIt-Anchor" href="#text-based-learning-and-repair-technology基于文本的学习和修复技术"></a> Text-Based Learning and Repair Technology(基于文本的学习和修复技术)</h2>
+<p>  基于文本的学习和修复技术。由于程序各部分之间的依赖性，即使是一个单一的错误也可能需要对整个程序进行分析。修复精度是程序修复技术中的一个重要指标，以前的文献基于令牌级精度定位和修复程序错误，其生成的错误补丁不能完全修复编程错误。</p>
+<h1 id="semantic-based-patching-technology基于语义的补丁技术"><a class="markdownIt-Anchor" href="#semantic-based-patching-technology基于语义的补丁技术"></a> Semantic-Based Patching Technology(基于语义的补丁技术)</h1>
+<h1 id="automatic-software-defect-predicting软件缺陷自动预测"><a class="markdownIt-Anchor" href="#automatic-software-defect-predicting软件缺陷自动预测"></a> Automatic Software Defect Predicting(软件缺陷自动预测)</h1>
+<h2 id="within-project-defect-prediction项目内缺陷预测"><a class="markdownIt-Anchor" href="#within-project-defect-prediction项目内缺陷预测"></a> Within-Project Defect Prediction(项目内缺陷预测)</h2>
+<h2 id="crossproject-defect-prediction交叉项目缺陷预测"><a class="markdownIt-Anchor" href="#crossproject-defect-prediction交叉项目缺陷预测"></a> Crossproject Defect Prediction(交叉项目缺陷预测)</h2>
+<h2 id="just-in-time-defect-prediction及时缺陷预测"><a class="markdownIt-Anchor" href="#just-in-time-defect-prediction及时缺陷预测"></a> Just-In-Time Defect Prediction(及时缺陷预测)</h2>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2021/07/02/git-code-128/" rel="prev" title="git code 128">
+      <i class="fa fa-chevron-left"></i> git code 128
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2021/07/30/ffmpeg/" rel="next" title="ffmpeg">
+      ffmpeg <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#automatic-software-vulnerability-detection%E8%BD%AF%E4%BB%B6%E6%BC%8F%E6%B4%9E%E8%87%AA%E5%8A%A8%E6%A3%80%E6%B5%8B"><span class="nav-number">1.</span> <span class="nav-text"> Automatic Software Vulnerability Detection(软件漏洞自动检测)</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#code-similarity-based-vulnerability-detection%E5%9F%BA%E4%BA%8E%E4%BB%A3%E7%A0%81%E7%9B%B8%E4%BC%BC%E6%80%A7%E7%9A%84%E6%BC%8F%E6%B4%9E%E6%A3%80%E6%B5%8B"><span class="nav-number">1.1.</span> <span class="nav-text"> Code Similarity-Based Vulnerability Detection(基于代码相似性的漏洞检测)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#grammar-based-clone-detection-methods%E5%9F%BA%E4%BA%8E%E8%AF%AD%E6%B3%95%E7%9A%84%E5%85%8B%E9%9A%86%E6%A3%80%E6%B5%8B%E6%96%B9%E6%B3%95"><span class="nav-number">1.1.1.</span> <span class="nav-text"> Grammar-Based Clone Detection Methods(基于语法的克隆检测方法)</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#cclearner"><span class="nav-number">1.1.1.1.</span> <span class="nav-text"> CCLearner</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#cldh"><span class="nav-number">1.1.1.2.</span> <span class="nav-text"> CLDH</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#white-et-al"><span class="nav-number">1.1.1.3.</span> <span class="nav-text"> White et al.</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#marastoni-et-al"><span class="nav-number">1.1.1.4.</span> <span class="nav-text"> Marastoni et al.</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%90%84%E7%A7%8D%E4%BB%A3%E7%A0%81%E8%A1%A8%E5%BE%81%E6%96%B9%E6%B3%95%E7%BB%84%E5%90%88"><span class="nav-number">1.1.1.5.</span> <span class="nav-text"> 各种代码表征方法组合</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#semantic-based-clone-detection-methods%E5%9F%BA%E4%BA%8E%E8%AF%AD%E4%B9%89%E7%9A%84%E5%85%8B%E9%9A%86%E6%A3%80%E6%B5%8B%E6%96%B9%E6%B3%95"><span class="nav-number">1.1.2.</span> <span class="nav-text"> Semantic-Based Clone Detection Methods(基于语义的克隆检测方法)</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#code-pattern-based-vulnerability-detection%E5%9F%BA%E4%BA%8E%E4%BB%A3%E7%A0%81%E6%A8%A1%E5%BC%8F%E7%9A%84%E6%BC%8F%E6%B4%9E%E6%A3%80%E6%B5%8B"><span class="nav-number">1.2.</span> <span class="nav-text"> Code Pattern-Based Vulnerability Detection(基于代码模式的漏洞检测)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#static-detection-methods%E9%9D%99%E6%80%81%E6%A3%80%E6%B5%8B%E6%96%B9%E6%B3%95"><span class="nav-number">1.2.1.</span> <span class="nav-text"> Static Detection Methods(静态检测方法)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#dynamic-detection-methods%E5%8A%A8%E6%80%81%E6%A3%80%E6%B5%8B%E6%96%B9%E6%B3%95"><span class="nav-number">1.2.2.</span> <span class="nav-text"> Dynamic Detection Methods(动态检测方法)</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#automatic-software-program-repair%E8%87%AA%E5%8A%A8%E8%BD%AF%E4%BB%B6%E7%A8%8B%E5%BA%8F%E4%BF%AE%E5%A4%8D"><span class="nav-number">2.</span> <span class="nav-text"> Automatic Software Program Repair(自动软件程序修复)</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#patching-process%E4%BF%AE%E8%A1%A5%E8%BF%87%E7%A8%8B"><span class="nav-number">2.1.</span> <span class="nav-text"> Patching Process(修补过程)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#the-software-fault-location-phase%E8%BD%AF%E4%BB%B6%E6%95%85%E9%9A%9C%E5%AE%9A%E4%BD%8D%E9%98%B6%E6%AE%B5"><span class="nav-number">2.1.1.</span> <span class="nav-text"> the software fault location phase(软件故障定位阶段)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#the-patch-generation-phase%E8%A1%A5%E4%B8%81%E7%94%9F%E6%88%90%E9%98%B6%E6%AE%B5"><span class="nav-number">2.1.2.</span> <span class="nav-text"> the patch generation phase(补丁生成阶段)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#the-patch-evaluation-phase%E8%A1%A5%E4%B8%81%E8%AF%84%E4%BC%B0%E9%98%B6%E6%AE%B5"><span class="nav-number">2.1.3.</span> <span class="nav-text"> the patch evaluation phase(补丁评估阶段)</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#grammar-based-patching-technology%E5%9F%BA%E4%BA%8E%E8%AF%AD%E6%B3%95%E7%9A%84%E4%BF%AE%E8%A1%A5%E6%8A%80%E6%9C%AF"><span class="nav-number">3.</span> <span class="nav-text"> Grammar-Based Patching Technology(基于语法的修补技术)</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#token-level-learning-and-repair-technology%E4%BB%A4%E7%89%8C%E7%BA%A7%E5%AD%A6%E4%B9%A0%E5%92%8C%E4%BF%AE%E5%A4%8D%E6%8A%80%E6%9C%AF"><span class="nav-number">3.1.</span> <span class="nav-text"> Token-Level Learning and Repair Technology(令牌级学习和修复技术)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#text-based-learning-and-repair-technology%E5%9F%BA%E4%BA%8E%E6%96%87%E6%9C%AC%E7%9A%84%E5%AD%A6%E4%B9%A0%E5%92%8C%E4%BF%AE%E5%A4%8D%E6%8A%80%E6%9C%AF"><span class="nav-number">3.2.</span> <span class="nav-text"> Text-Based Learning and Repair Technology(基于文本的学习和修复技术)</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#semantic-based-patching-technology%E5%9F%BA%E4%BA%8E%E8%AF%AD%E4%B9%89%E7%9A%84%E8%A1%A5%E4%B8%81%E6%8A%80%E6%9C%AF"><span class="nav-number">4.</span> <span class="nav-text"> Semantic-Based Patching Technology(基于语义的补丁技术)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#automatic-software-defect-predicting%E8%BD%AF%E4%BB%B6%E7%BC%BA%E9%99%B7%E8%87%AA%E5%8A%A8%E9%A2%84%E6%B5%8B"><span class="nav-number">5.</span> <span class="nav-text"> Automatic Software Defect Predicting(软件缺陷自动预测)</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#within-project-defect-prediction%E9%A1%B9%E7%9B%AE%E5%86%85%E7%BC%BA%E9%99%B7%E9%A2%84%E6%B5%8B"><span class="nav-number">5.1.</span> <span class="nav-text"> Within-Project Defect Prediction(项目内缺陷预测)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#crossproject-defect-prediction%E4%BA%A4%E5%8F%89%E9%A1%B9%E7%9B%AE%E7%BC%BA%E9%99%B7%E9%A2%84%E6%B5%8B"><span class="nav-number">5.2.</span> <span class="nav-text"> Crossproject Defect Prediction(交叉项目缺陷预测)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#just-in-time-defect-prediction%E5%8F%8A%E6%97%B6%E7%BC%BA%E9%99%B7%E9%A2%84%E6%B5%8B"><span class="nav-number">5.3.</span> <span class="nav-text"> Just-In-Time Defect Prediction(及时缺陷预测)</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">transient91</p>
+  <div class="site-description" itemprop="description">blog</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">13</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">tags</span>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">transient91</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a>
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+</body>
+</html>
