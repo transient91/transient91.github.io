@@ -28,7 +28,7 @@
 <meta property="og:description" content="用 Telnet 与 qq 邮箱的 SMTP 服务器对话。 部分内容参考了这里">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2021-09-11T08:49:09.000Z">
-<meta property="article:modified_time" content="2021-09-11T15:13:20.512Z">
+<meta property="article:modified_time" content="2021-09-12T08:15:14.102Z">
 <meta property="article:author" content="transient91">
 <meta name="twitter:card" content="summary">
 
@@ -172,10 +172,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">Posted on</span>
-              
 
-              <time title="Created: 2021-09-11 16:49:09 / Modified: 23:13:20" itemprop="dateCreated datePublished" datetime="2021-09-11T16:49:09+08:00">2021-09-11</time>
+              <time title="Created: 2021-09-11 16:49:09" itemprop="dateCreated datePublished" datetime="2021-09-11T16:49:09+08:00">2021-09-11</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2021-09-12 16:15:14" itemprop="dateModified" datetime="2021-09-12T16:15:14+08:00">2021-09-12</time>
+              </span>
 
           
 
@@ -194,7 +200,8 @@
 <h1 id="涉及协议"><a class="markdownIt-Anchor" href="#涉及协议"></a> 涉及协议</h1>
 <p>SMTP：端口号 25<br />
 POP3：端口号 110<br />
-IMAP：端口号 143</p>
+IMAP：端口号 143<br />
+MIME</p>
 <h1 id="前置过程"><a class="markdownIt-Anchor" href="#前置过程"></a> 前置过程</h1>
 <h2 id="windows10-启用-telnet"><a class="markdownIt-Anchor" href="#windows10-启用-telnet"></a> Windows10 启用 Telnet</h2>
 <p><a target="_blank" rel="noopener" href="https://mail.qq.com/cgi-bin/frame_html?sid=svVxkfWXqRomOmwN&amp;r=d7750d7e62849f94a745db56b6aa0600">点击此处</a>查看如何启用 Telnet。</p>
@@ -402,6 +409,15 @@ IMAP：端口号 143</p>
 <li>二个字节的情况：将这二个字节的一共 16 个二进制位，按照上面的规则，转成三组，最后一组除了前面加两个 0 以外，后面也要加两个 0。这样得到一个三位的 Base64 编码，再在末尾补上一个&quot;=&quot;号。</li>
 <li>一个字节的情况：将这一个字节的 8 个二进制位，按照上面的规则转成二组，最后一组除了前面加二个 0 以外，后面再加 4 个 0。这样得到一个二位的 Base64 编码，再在末尾补上两个&quot;=&quot;号。</li>
 </ol>
+<hr />
+<p>对文件编码可以使用 Windows 自带的 CertUtil。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">CertUtil -encode test.png test.txt</span><br></pre></td></tr></table></figure>
+<h2 id="mime"><a class="markdownIt-Anchor" href="#mime"></a> MIME</h2>
+<p>具体可以参考<a target="_blank" rel="noopener" href="http://www.360doc.com/content/11/1014/11/496343_156080638.shtml">这里</a>。</p>
+<p>通过在邮件头部增加额外的行以声明 MIME 的内容类型。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">From: aliceecrepes. fr</span><br><span class="line">To: bobhamburger.edu</span><br><span class="line">Subject: Picture of yurmy crepe.</span><br><span class="line">MIME-Version: 1.o</span><br><span class="line">Content-Transfer-Encoding: base64</span><br><span class="line">Content-Type: image/jpeg</span><br><span class="line"></span><br><span class="line">base64 encoded data ......</span><br><span class="line">..........................</span><br><span class="line">.......base64 encoded data</span><br></pre></td></tr></table></figure>
+<p><code>MIME-Version</code>一般都为 1.0。<br />
+空的一行不能省略，以区分正文和附件。</p>
 <h1 id="开始操作"><a class="markdownIt-Anchor" href="#开始操作"></a> 开始操作</h1>
 <h2 id="smtp"><a class="markdownIt-Anchor" href="#smtp"></a> SMTP</h2>
 <p>在终端输入<code>telnet smtp.qq.com 25</code>后：</p>
@@ -489,7 +505,7 @@ IMAP：端口号 143</p>
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%B6%89%E5%8F%8A%E5%8D%8F%E8%AE%AE"><span class="nav-number">1.</span> <span class="nav-text"> 涉及协议</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%89%8D%E7%BD%AE%E8%BF%87%E7%A8%8B"><span class="nav-number">2.</span> <span class="nav-text"> 前置过程</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#windows10-%E5%90%AF%E7%94%A8-telnet"><span class="nav-number">2.1.</span> <span class="nav-text"> Windows10 启用 Telnet</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%85%8D%E7%BD%AE-qq-%E9%82%AE%E7%AE%B1"><span class="nav-number">2.2.</span> <span class="nav-text"> 配置 qq 邮箱</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#base64"><span class="nav-number">2.3.</span> <span class="nav-text"> base64</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%BC%80%E5%A7%8B%E6%93%8D%E4%BD%9C"><span class="nav-number">3.</span> <span class="nav-text"> 开始操作</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#smtp"><span class="nav-number">3.1.</span> <span class="nav-text"> SMTP</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#pop3"><span class="nav-number">3.2.</span> <span class="nav-text"> POP3</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#imap"><span class="nav-number">3.3.</span> <span class="nav-text"> IMAP</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%B6%89%E5%8F%8A%E5%8D%8F%E8%AE%AE"><span class="nav-number">1.</span> <span class="nav-text"> 涉及协议</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%89%8D%E7%BD%AE%E8%BF%87%E7%A8%8B"><span class="nav-number">2.</span> <span class="nav-text"> 前置过程</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#windows10-%E5%90%AF%E7%94%A8-telnet"><span class="nav-number">2.1.</span> <span class="nav-text"> Windows10 启用 Telnet</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%85%8D%E7%BD%AE-qq-%E9%82%AE%E7%AE%B1"><span class="nav-number">2.2.</span> <span class="nav-text"> 配置 qq 邮箱</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#base64"><span class="nav-number">2.3.</span> <span class="nav-text"> base64</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#mime"><span class="nav-number">2.4.</span> <span class="nav-text"> MIME</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%BC%80%E5%A7%8B%E6%93%8D%E4%BD%9C"><span class="nav-number">3.</span> <span class="nav-text"> 开始操作</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#smtp"><span class="nav-number">3.1.</span> <span class="nav-text"> SMTP</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#pop3"><span class="nav-number">3.2.</span> <span class="nav-text"> POP3</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#imap"><span class="nav-number">3.3.</span> <span class="nav-text"> IMAP</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
